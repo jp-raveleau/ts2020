@@ -1,13 +1,13 @@
 #!/bin/bash
 set -ex
 
-# SET FAILOVER NETWORK TO EITHER 10.42.19.X OR 10.42.66.X BASED ON CURRENT IP
+# SET FAILOVER NETWORK TO EITHER 10.136.230.X OR 10.136.232.X BASED ON CURRENT IP
 DB_ADDRESS=$(awk '/DB_HOST_ADDRESS:/{print}' /home/centos/Fiesta/config/config.js)
 OLD_IP="$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' <<< $DB_ADDRESS)"
-if [[ $OLD_IP == *"3"* ]]; then
-  NEW_NET=10.38.2.0
-elif [[ $OLD_IP == *"2"* ]]; then
-  NEW_NET=10.38.3.0
+if [[ $OLD_IP == *"230"* ]]; then
+  NEW_NET=10.136.232.0
+elif [[ $OLD_IP == *"232"* ]]; then
+  NEW_NET=10.136.230.0
 fi
 NEW_NET=$(echo $NEW_NET | sed 's/\.[0-9]*$//')
 
